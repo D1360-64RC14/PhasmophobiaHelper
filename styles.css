@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
+
+body {
+    margin: 0;
+    background-color: #202225;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: white;
+    font-family: "Open Sans";
+    font-weight: 600;
+    display: grid;
+    gap: 1rem;
+}
+
+@media (max-width: 1400px) {
+    body {
+        margin: 1rem;
+        grid-template-columns: 23vw auto;
+        grid-template-rows: 30vh auto;
+
+        grid-template-areas: 
+        "ghost-list evidences"
+        "ghost-list information"
+        ;
+    }
+}
+
+@media (min-width: 1400px) {
+    body {
+        grid-template-columns: auto 23vw 50vw auto;
+        grid-template-rows: auto 30vh 50vh auto;
+
+        grid-template-areas:
+        ".      .          .      ."
+        ". ghost-list evidences   ."
+        ". ghost-list information ."
+        ".      .          .      .";
+
+        font-size: 120%;
+    }
+}
+
+ghost-list {
+    grid-area: ghost-list;
+    background-color: #2F3136;
+    display: flex;
+    border-radius: 1rem;
+}
+ghost-list #ghost-list {
+    display: flex;
+    width: 100%;
+    font-size: 140%;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+ghost-list #ghost-list ghost-name {
+    transition: opacity, color 200ms;
+    cursor: pointer;
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    border-radius: .5rem;
+}
+
+ghost-list #ghost-list ghost-name[data-show="0"] {
+    opacity: .3;
+}
+
+ghost-list #ghost-list ghost-name:hover {
+    color: rgb(202, 57, 202);
+    font-weight: 700;
+}
+
+evidences {
+    grid-area: evidences;
+    display: flex;
+    align-items: center;
+    background-color: #292B2F;
+    border-radius: 1rem;
+}
+
+evidences #evidences {
+    display: flex;
+    flex-wrap: wrap;
+    height: 85%;
+}
+
+evidences #evidences evidence {
+    width: 15rem;
+    margin: auto;
+    padding: 3vh 1vw;
+    text-align: center;
+    border-radius: .35rem;
+    cursor: pointer;
+    transition-property: background-color, box-shadow;
+    transition-duration: 300ms;
+}
+evidences #evidences evidence:hover {
+    background-color: #393C42;
+}
+evidences #evidences evidence[data-active="1"] {
+    background-color: #f04747cc!important;
+}
+evidences #evidences evidence[data-test="1"] {
+    box-shadow: 0 0 20px 0 #80008055;
+    background-color: #80008055;
+    color: white;
+    font-weight: 600;
+}
+evidences #evidences evidence[data-active="1"][data-test="1"] {
+    background-image: linear-gradient(135deg, #f04747cc, #800080cc);
+}
+
+information {
+    grid-area: information;
+    background-color: #36393F;
+    border-radius: .8rem;
+    display: flex;
+    flex-direction: row;
+    overflow-y: hidden;
+}
+
+information #information {
+    display: flex;
+    flex-direction: column;
+    padding: .5rem;
+    overflow-y: scroll;
+}
+
+information #information ghost {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .8rem;
+    background-color: #04040512;
+    padding: .5rem;
+    border-radius: .5rem;
+    overflow-y: visible;
+}
+
+information #information ghost ghost-strength,
+information #information ghost ghost-weakness,
+information #information ghost ghost-evidences {
+    display: block;
+}
+
+information #information ghost ghost-strength title,
+information #information ghost ghost-weakness title,
+information #information ghost ghost-evidences title {
+    display: inline-block;
+    font-weight: bold;
+    color: hsl(0, 0%, 92%);
+}
+
+information #information ghost ghost-strength title::after,
+information #information ghost ghost-weakness title::after,
+information #information ghost ghost-evidences title::after {
+    content: ":";
+    margin-right: .6rem;
+}
+
+information #information ghost ghost-name {
+    font-size: 120%;
+    font-weight: bolder;
+    margin-bottom: .3rem;
+    color: hsl(0, 0%, 90%);
+    align-self: center;
+}
+
+information #information ghost *:not(ghost-name):not(title):not(*:last-child) {
+    margin-bottom: .5rem;
+}
+
+information #information ghost ghost-description::before {
+    content: "";
+    margin-left: 2rem;
+}
+
+.hiddenInfo {
+    display: none!important;
+}
+
+information #information ghost ghost-description, information #information ghost * text {
+    color: hsl(0, 0%, 80%);
+}
+
+information #information::-webkit-scrollbar {
+    width: 9px;
+    background-color: #292B2F;
+}
+information #information::-webkit-scrollbar-thumb {
+    background-color: #1f2024;
+    border-radius: 5rem;
+}

@@ -132,6 +132,7 @@ information #information {
     flex-direction: column;
     padding: .5rem;
     overflow-y: scroll;
+    width: 100%;
 }
 
 information #information ghost {
